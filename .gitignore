@@ -1,0 +1,16 @@
+# Node dependencies
+frontend/node_modules/
+frontend/build/
+
+# Java/Maven outputs
+backend/target/
+*.class
+
+# Environment files
+.env
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.iml
