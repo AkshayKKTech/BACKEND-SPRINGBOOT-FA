@@ -19,14 +19,14 @@ public class OrderController {
     @GetMapping("/track/{orderId}")
     public ResponseEntity<?> trackOrder(@PathVariable String orderId) {
         return orderRepository.findByOrderId(orderId)
-                .map(order -> ResponseEntity.ok(Map.of(
+                .<ResponseEntity<?>>map(order -> ResponseEntity.ok(Map.of(
                         "found", true,
                         "orderId", order.getOrderId(),
                         "status", order.getStatus(),
                         "message", String.format("Order ID #%s is currently %s by the %s.",
                                 order.getOrderId(), order.getStatus(), order.getAssignedTeam())
                 )))
-                .orElse(ResponseEntity.ok(Map.of(
+                .orElseGet(() -> ResponseEntity.ok(Map.of(
                         "found", false,
                         "message", String.format("Order ID #%s was not found in the database.", orderId)
                 )));

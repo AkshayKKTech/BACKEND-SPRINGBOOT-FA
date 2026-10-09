@@ -1,4 +1,4 @@
-package com.firstamerican.portal.controller;
+package com.firstamerican.portal.service;
 
 import com.firstamerican.portal.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
