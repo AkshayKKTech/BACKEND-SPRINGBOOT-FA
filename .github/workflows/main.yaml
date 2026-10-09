@@ -32,7 +32,7 @@ jobs:
           mvn package -DskipTests
           pwd
           ls -la
-          ls -la /target
+          ls -la target
 
       - name: Upload artifactory
         uses: actions/upload-artifact@v4
