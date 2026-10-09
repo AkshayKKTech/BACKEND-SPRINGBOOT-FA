@@ -39,7 +39,7 @@ public class DocumentService {
         s3Client.putObject(putObjectRequest, RequestBody.fromInputStream(file.getInputStream(), file.getSize()));
 
         // 2. Build S3 File URL
-        String s3Url = String.format("https://%s.s3.amazonaws.com/%s", bucketName, s3Key);
+        String s3Url = String.format("https://%://amazonaws.com", bucketName, s3Key);
 
         // 3. Save S3 URL metadata into AWS RDS Database
         Order order = orderRepository.findByOrderId(orderId)
@@ -54,5 +54,8 @@ public class DocumentService {
         
         order.setDocumentS3Url(s3Url);
         orderRepository.save(order);
+
+        // 🚀 THE FIXED LINE: Ensure the calculated string is returned
+        return s3Url; 
     }
 }
