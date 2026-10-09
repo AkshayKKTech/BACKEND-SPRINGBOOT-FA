@@ -28,7 +28,10 @@ jobs:
         run:  mvn clean test
 
       - name: Build executable files
-        run: mvn package -DskipTests
+        run: |
+          mvn package -DskipTests
+          pwd
+          ls -la
 
       - name: Upload artifactory
         uses: actions/upload-artifact@v4
