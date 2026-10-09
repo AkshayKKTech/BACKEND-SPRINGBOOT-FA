@@ -3,8 +3,6 @@ name: Springboot backend deplpoy
 on:
   push:
     branches: ["main","master"]
-      paths:
-        - Project__Springboot( backend-fai)/**
   workflow_dispatch:
 
 env:
