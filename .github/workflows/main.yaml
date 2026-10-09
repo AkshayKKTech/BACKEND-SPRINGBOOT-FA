@@ -54,6 +54,7 @@ jobs:
           name: backend-jar
           path: target/*.jar
           if-no-files-found: error
+      - name: Find jar file
         run: |
           ls -la
 
