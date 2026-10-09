@@ -57,6 +57,7 @@ jobs:
       - name: Find jar file
         run: |
           ls -la
+          ls -la target
 
   
 
