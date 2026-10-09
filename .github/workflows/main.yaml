@@ -32,6 +32,7 @@ jobs:
           mvn package -DskipTests
           pwd
           ls -la
+          ls -la /target
 
       - name: Upload artifactory
         uses: actions/upload-artifact@v4
@@ -42,41 +43,7 @@ jobs:
 
 
 
-  Dockerlogin_push:
-    runs-on: ubuntu-latest
-    needs: build_and_test
-    steps:
-      - name: checkout source code
-        uses: actions/checkout@v4
-      
-      - name: Download artifactory
-        uses: actions/download-artifact@v4
-        with:
-          name: backend-jar
-          path: target/*.jar
-
-      - name: Configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-      
-      - name: Login to AWS ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Docker build and push
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: |
-            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
-            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:backend
-        
-
-
+  
 
 
 
