@@ -43,11 +43,16 @@ public class DocumentService {
 
         // 3. Save S3 URL metadata into AWS RDS Database
         Order order = orderRepository.findByOrderId(orderId)
-                .orElse(new Order(orderId, "UNDER_REVIEW", "Bangalore Ops", ""));
+                .orElseGet(() -> {
+                    Order newOrder = new Order();
+                    newOrder.setOrderId(orderId);
+                    newOrder.setStatus("UNDER_REVIEW");
+                    newOrder.setAssignedTeam("Bangalore Ops");
+                    newOrder.setPropertyAddress("");
+                    return newOrder;
+                });
         
-        order.setDocumentS3Url(s3Url); // Column added to Order entity
+        order.setDocumentS3Url(s3Url);
         orderRepository.save(order);
-
-        return s3Url;
     }
 }

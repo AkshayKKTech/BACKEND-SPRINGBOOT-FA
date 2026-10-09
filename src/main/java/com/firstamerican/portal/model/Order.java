@@ -24,4 +24,7 @@ public class Order {
 
     @Column(name = "property_address")
     private String propertyAddress;
+
+    @Column(name = "document_s3_url")
+    private String documentS3Url;
 }
