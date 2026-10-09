@@ -56,7 +56,7 @@ jobs:
           if-no-files-found: error
 
       - name: Find jar files
-        uses: |
+        run: |
           ls -la
     
        
