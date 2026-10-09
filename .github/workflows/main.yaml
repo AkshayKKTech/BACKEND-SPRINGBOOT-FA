@@ -1,4 +1,4 @@
-name: Springboot backend deplpoy
+name: Springboot backend deploy
 
 on:
   push:
